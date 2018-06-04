@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 // import { string, shape } from 'prop-types';
 import throttle from 'lodash/throttle';
+// import debounce from 'lodash/debounce';
 
 import Slide from '../Slide';
 import './styles.css';
@@ -11,28 +12,33 @@ class Carousel extends PureComponent {
     currentIndex: 0,
     nextIndex: 1,
     prevIndex: 2,
-    isNext: true
+    type: 'NONE'
   };
 
   componentWillMount() {
-    this.setNextSlideDebounced = throttle(this.setNextSlide, 2000, {
+    this.setNextSlideDebounced = throttle(this.setNextSlide, 1000, {
       leading: true,
       trailing: false
     });
+
+    // this.setNextSlideDebounced = debounce(this.setNextSlide, 100, {
+    //   leading: true,
+    //   trailing: false
+    // });
 
     this.setInitialIndexes();
   }
 
   setInitialIndexes() {
-    const { slides } = this.props;
+    const { children } = this.props;
     this.setState({
       currentIndex: 0,
       nextIndex: 1,
-      prevIndex: slides.length - 1
+      prevIndex: children.length - 1
     })
   }
 
-  setNextSlide = (isNext) => {
+  setNextSlide = (type) => {
     const { children = null } = this.props;
     if (!children || children.length <= 1) {
       return null;
@@ -42,13 +48,18 @@ class Carousel extends PureComponent {
     const { currentIndex } = this.state;
     let newIndex = 0;
 
-    if (isNext) {
+    if (type === 'NONE') {
+      return null;
+    }
+
+    if (type === 'FORWARD') {
       if (currentIndex < count - 1) {
         newIndex = currentIndex + 1;
       } else {
         newIndex = 0;
       }
-    } else {
+    }
+    if (type === 'BACKWARD') {
       if (currentIndex === 0) {
         newIndex = count - 1;
       } else {
@@ -60,7 +71,6 @@ class Carousel extends PureComponent {
     let newPrevIndex = newIndex === 0 ? count - 1 : newIndex - 1;
 
     this.setState({
-      isNext,
       currentIndex: newIndex,
       nextIndex: newNextIndex,
       prevIndex: newPrevIndex
@@ -70,14 +80,21 @@ class Carousel extends PureComponent {
   handleScroll = (e) => {
     const { deltaY } = e;
     // console.log(deltaY);
-    this.setNextSlideDebounced(deltaY < 0);
+    let type = 'NONE';
+    if (deltaY < 0) {
+      type = 'FORWARD'
+    }
+    if (deltaY > 0) {
+      type = 'BACKWARD'
+    }
+    this.setNextSlideDebounced(type);
   }
 
   render() {
     const { children } = this.props;
-    const { currentIndex, nextIndex, prevIndex, isNext } = this.state;
+    const { currentIndex, nextIndex, prevIndex } = this.state;
 
-    console.log(`currentIndex: ${currentIndex}`);
+    console.log(`current: ${currentIndex}; next: ${nextIndex}; prev: ${prevIndex}`);
 
     const wrappedChildren = React.Children.map(children, (child, index) => (
       <Slide
@@ -89,7 +106,7 @@ class Carousel extends PureComponent {
     ));
 
     return (
-      <ContextProvider>
+      <ContextProvider value={{ currentIndex, nextIndex, prevIndex }}>
         <div
           className={'carousel__container'}
           onWheel={this.handleScroll}

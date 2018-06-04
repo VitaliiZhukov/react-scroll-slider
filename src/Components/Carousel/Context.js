@@ -13,10 +13,12 @@ export const ContextProvider = ({ children, value }) => {
 export const withContext = ComposedComponent => {
   return (props) => (
     <CarouselContext.Consumer>
-      {({ currentIndex }) =>
+      {({ currentIndex, prevIndex, nextIndex }) =>
         <ComposedComponent
           {...props}
           currentIndex={currentIndex}
+          prevIndex={prevIndex}
+          nextIndex={nextIndex}
         />
       }
     </CarouselContext.Consumer>
