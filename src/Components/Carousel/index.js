@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 // import { string, shape } from 'prop-types';
 import throttle from 'lodash/throttle';
-// import debounce from 'lodash/debounce';
 
 import Slide from '../Slide';
 import './styles.css';
@@ -20,11 +19,6 @@ class Carousel extends PureComponent {
       leading: true,
       trailing: false
     });
-
-    // this.setNextSlideDebounced = debounce(this.setNextSlide, 100, {
-    //   leading: true,
-    //   trailing: false
-    // });
 
     this.setInitialIndexes();
   }
@@ -78,6 +72,7 @@ class Carousel extends PureComponent {
   };
 
   handleScroll = (e) => {
+    e.preventDefault();
     const { deltaY } = e;
     // console.log(deltaY);
     let type = 'NONE';
