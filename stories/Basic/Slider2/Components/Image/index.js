@@ -3,7 +3,7 @@ import { string } from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  width: 500px;
+  flex: 1;
   height: 100%;
   background-image: url(${props => props.imageUrl});
   background-size: cover;

@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   height: 600px;
   background-color: Lavender;
   margin: 16px;
+  font-family: Helvetica;
 `;
 
 export default () => storiesOf('Basic slider', module)
