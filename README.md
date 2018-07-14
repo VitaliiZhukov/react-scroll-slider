@@ -15,7 +15,16 @@ Demo is [here][demo]
 
 ### Example
 To run example app
-`git clone git@github.com:VitaliiZhukov/react-scroll-slider.git`
-`cd react-scroll-slider`
-`yarn`
-`yarn start`
+```sh
+git clone git@github.com:VitaliiZhukov/react-scroll-slider.git
+```
+```sh
+cd react-scroll-slider
+```
+```sh
+yarn
+```
+
+```sh
+yarn start
+```
