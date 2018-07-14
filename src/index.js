@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-
-ReactDOM.render(<App />, document.getElementById('root'));
+export { default as Carousel } from './Carousel';
+export { default as Slide } from './Slide';
+export { default as ActiveItem } from './ActiveItem';

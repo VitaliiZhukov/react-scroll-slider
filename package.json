@@ -1,17 +1,43 @@
 {
-  "name": "react-carousel",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4",
-    "styled-components": "^3.3.0"
-  },
+  "name": "react-scroll-slider",
+  "version": "1.0.0",
+  "description": "React slider component triggered by scrolling",
+  "main": "build/index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VitaliiZhukov/react-scroll-slider.git"
+  },
+  "keywords": [
+    "react",
+    "scroll",
+    "slider",
+    "carousel"
+  ],
+  "author": "Vitalii Zhukov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VitaliiZhukov/react-scroll-slider/issues"
+  },
+  "homepage": "https://github.com/VitaliiZhukov/react-scroll-slider#readme",
+  "dependencies": {
+    "react": "^16.4.1",
+    "webpack": "^4.16.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.21.0",
+    "webpack-cli": "^3.0.8"
   }
 }
