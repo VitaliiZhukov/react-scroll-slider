@@ -1,39 +1,44 @@
 import React, { PureComponent } from 'react';
-// import PropTypes from 'prop-types'
+import { number, object } from 'prop-types'
 
 import { withContext as withCarouselContext } from '../Carousel/Context';
 import { withContext as withSlideContext } from '../Slide/Context';
 
 export class ActiveItem extends PureComponent {
-  static propTypes = {
-
-  }
-
   render() {
-    const { children, currentIndex, prevIndex, nextIndex, index, forwardStyle, backwardStyle, stableStyle } = this.props;
+    const { children, currentIndex, prevIndex, nextIndex, index, forwardStyle, backwardStyle, stableStyle, style } = this.props;
 
     const transition = {
       transition: 'all 1s ease-out'
     };
 
-    let style = { transformOrigin: 'center'};
+    let st = { transformOrigin: 'center'};
     if (currentIndex === index) {
-      style = { ...stableStyle, ...transition }
+      st = { ...stableStyle, ...transition }
     }
     if (index === nextIndex) {
-      style = { ...forwardStyle, ...transition }
+      st = { ...forwardStyle, ...transition }
     }
     if (index === prevIndex) {
-      style = { ...backwardStyle, ...transition }
+      st = { ...backwardStyle, ...transition }
     }
 
     return (
-      <div style={style}>
+      <div style={{ ...st, ...style }}>
         { children }
       </div>
     )
   }
 };
+
+ActiveItem.propTypes = {
+  currentIndex: number.isRequired,
+  prevIndex: number.isRequired,
+  nextIndex: number.isRequired,
+  forwardStyle: object,
+  backwardStyle: object,
+  stableStyle: object
+}
 
 ActiveItem.defaultProps = {
   stableStyle: {
