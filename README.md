@@ -6,25 +6,18 @@ Demo is [here][demo]
 
 ### Roadmap
   - Tests
-  - Create npm pakage for Carousel component
   - Storybook for showcases
   - Implement hosizontal slide scrolling
-  - Support for swap events
+  - Support for swipe events
 
    [demo]: <https://eager-bassi-71d972.netlify.com/>
 
-### Example
-To run example app
+### Installation
+To install package
 ```sh
-git clone git@github.com:VitaliiZhukov/react-scroll-slider.git
+npm i --save react-scroll-slider
 ```
+or
 ```sh
-cd react-scroll-slider
-```
-```sh
-yarn
-```
-
-```sh
-yarn start
+yarn add react-scroll-slider
 ```
