@@ -10,7 +10,7 @@ Demo is [here][demo]
   - Implement hosizontal slide scrolling
   - Support for swipe events
 
-   [demo]: <https://eager-bassi-71d972.netlify.com/>
+   [demo]: <https://goofy-torvalds-da63e4.netlify.com>
 
 ### Installation
 To install package
