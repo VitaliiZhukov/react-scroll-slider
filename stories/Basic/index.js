@@ -2,15 +2,16 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import styled from 'styled-components';
 
-import Slider1 from './Slider1';
-import Slider2 from './Slider2';
+import Basic from './Basic';
+import Horizontal from './Horizontal';
+import Vertical from './Vertical';
 
 const Wrapper = styled.div`
   height: 600px;
-  background-color: Lavender;
   margin: 16px;
   font-family: Helvetica;
-`;
+  `;
+  // background-color: Lavender;
 
 export default () => storiesOf('Basic slider', module)
   .addDecorator(getStory => (
@@ -18,5 +19,6 @@ export default () => storiesOf('Basic slider', module)
       { getStory() }
     </Wrapper>
   ))
-  .add('Basic slider 1', () => <Slider1 />)
-  .add('Basic slider 2', () => <Slider2 />);
+  .add('Basic', () => <Basic />)
+  .add('Horizontal', () => <Horizontal />)
+  .add('Vertical', () => <Vertical />);

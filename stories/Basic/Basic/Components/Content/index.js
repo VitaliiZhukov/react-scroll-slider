@@ -11,9 +11,12 @@ const ContentWrapper = styled.div`
   padding: 32px;
 `;
 
-const Content = ({ title, description, width }) => {
+const Content = ({ title, description, width, style }) => {
   return (
-    <ContentWrapper width={width}>
+    <ContentWrapper
+      width={width}
+      style={style}
+    >
       <h2>
         { title }
       </h2>

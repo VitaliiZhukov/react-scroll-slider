@@ -5,7 +5,7 @@ import ActiveItem from 'ActiveItem';
 
 import Content from '../Content';
 import Image from '../Image';
-import imageUrl from './autumn.jpg';
+import imageUrl from '../../../assets/autumn.jpg';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -13,22 +13,22 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-const WithImage = () => {
-  const forwardStyleWrapper = { transform: 'translateX(-100%)'};
-  const backwardStyleWrapper = { transform: 'translateX(100%)'};
+const forwardStyleWrapper = { transform: 'translateX(-100%)'};
+const backwardStyleWrapper = { transform: 'translateX(100%)'};
 
-  return (
-    <ActiveItem
-      forwardStyle={forwardStyleWrapper}
-      backwardStyle={backwardStyleWrapper}
-      style={{ height: '100%' }}
-    >
-      <Wrapper>
+const WithImage = () => (
+  <ActiveItem
+    forwardStyle={forwardStyleWrapper}
+    backwardStyle={backwardStyleWrapper}
+  >{
+    (style) => (
+      <Wrapper style={style}>
         <Content title={'This is autumn'} />
         <Image imageUrl={imageUrl} />
       </Wrapper>
-    </ActiveItem>
-  )
-};
+    )
+  }
+  </ActiveItem>
+);
 
 export default WithImage;
