@@ -6,11 +6,11 @@ Demo is [here][demo]
 
 ### Roadmap
   - Tests
-  - Storybook for showcases
+  - Storybook for showcases and code samples
   - Implement hosizontal slide scrolling
   - Support for swipe events
 
-   [demo]: <https://goofy-torvalds-da63e4.netlify.com>
+   [demo]: <https://gifted-williams-4fa740.netlify.com/>
 
 ### Installation
 To install package
