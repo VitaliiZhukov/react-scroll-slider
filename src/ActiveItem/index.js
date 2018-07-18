@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { number, object } from 'prop-types'
 
 import { withContext as withCarouselContext } from '../Carousel/Context';
@@ -6,7 +6,7 @@ import { withContext as withSlideContext } from '../Slide/Context';
 
 export class ActiveItem extends PureComponent {
   render() {
-    const { children, currentIndex, prevIndex, nextIndex, index, forwardStyle, backwardStyle, stableStyle, style } = this.props;
+    const { children, currentIndex, prevIndex, nextIndex, index, forwardStyle, backwardStyle, stableStyle } = this.props;
 
     const transition = {
       transition: 'all 1s ease-out'
@@ -23,11 +23,7 @@ export class ActiveItem extends PureComponent {
       st = { ...backwardStyle, ...transition }
     }
 
-    return (
-      <div style={{ ...st, ...style }}>
-        { children }
-      </div>
-    )
+    return children(st);
   }
 };
 

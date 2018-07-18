@@ -74,7 +74,6 @@ class Carousel extends PureComponent {
   handleScroll = (e) => {
     e.preventDefault();
     const { deltaY } = e;
-    // console.log(deltaY);
     let type = 'NONE';
     if (deltaY < 0) {
       type = 'FORWARD'
@@ -95,6 +94,8 @@ class Carousel extends PureComponent {
       <Slide
         index={index}
         currentIndex={currentIndex}
+        nextIndex={nextIndex}
+        prevIndex={prevIndex}
       >
         { child }
       </Slide>

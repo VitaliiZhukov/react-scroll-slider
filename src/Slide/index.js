@@ -6,12 +6,18 @@ import { ContextProvider } from './Context';
 
 class Slide extends PureComponent {
   render() {
-    const { children, index, currentIndex } = this.props;
+    const { children, index, currentIndex, nextIndex, prevIndex } = this.props;
 
-    const style = {
-      opacity: index !== currentIndex ? 0 : 1,
-      zIndex: index !== currentIndex ? -1 : 1,
-    };
+    if ((index !== nextIndex)
+     && (index !== prevIndex)
+     && (index !== currentIndex)) {
+      return null;
+    }
+
+    const style = {};
+    style.zIndex = index === currentIndex
+      ? 1
+      : -1;
 
     const childrenWithIndex = React.Children.map(children, child =>
       React.cloneElement(child, { slideIndex: index }));
