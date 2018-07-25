@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import Carousel from './index';
 
@@ -22,8 +22,6 @@ describe('Render Carousel component with children', () => {
       <div/>
     </Carousel>
   );
-
-  console.log(wrapper.debug());
 
   it('should render 3 slide children with proper class', () => {
     expect(wrapper.find('.slide__container')).toHaveLength(2);
