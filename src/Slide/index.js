@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-// import { string } from 'prop-types';
+import { number, node, oneOfType, arrayOf } from 'prop-types';
 import './styles.css';
 
 import { ContextProvider } from './Context';
@@ -14,29 +14,37 @@ class Slide extends PureComponent {
       return null;
     }
 
-    const style = {};
-    style.zIndex = index === currentIndex
-      ? 1
-      : -1;
+    const isNext = index === nextIndex;
+    const isPrev = index === prevIndex;
+    const isCurrent = index === currentIndex;
 
-    const childrenWithIndex = React.Children.map(children, child =>
-      React.cloneElement(child, { slideIndex: index }));
+    const style = {
+      zIndex: isCurrent ? 1 : -1
+    };
 
     return (
-      <ContextProvider value={{ index }}>
+      <ContextProvider value={{ index, isNext, isPrev, isCurrent }}>
         <div
           className={'slide__container'}
           style={style}
         >
-          { childrenWithIndex }
+          { children }
         </div>
       </ContextProvider>
     );
   }
 };
 
-Slide.propTypes = {};
+Slide.propTypes = {
+  children: oneOfType([arrayOf(node), node]),
+  index: number.isRequired,
+  nextIndex: number.isRequired,
+  prevIndex: number.isRequired,
+  currentIndex: number.isRequired
+};
 
-Slide.defaultProps = {};
+Slide.defaultProps = {
+  children: null
+};
 
 export default Slide;

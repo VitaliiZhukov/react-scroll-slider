@@ -6,20 +6,28 @@ import { withContext as withSlideContext } from '../Slide/Context';
 
 export class ActiveItem extends PureComponent {
   render() {
-    const { children, currentIndex, prevIndex, nextIndex, index, forwardStyle, backwardStyle, stableStyle } = this.props;
+    const {
+      children,
+      isCurrent,
+      isPrev,
+      isNext,
+      forwardStyle,
+      backwardStyle,
+      stableStyle
+    } = this.props;
 
     const transition = {
       transition: 'all 1s ease-out'
     };
 
     let st = { transformOrigin: 'center'};
-    if (currentIndex === index) {
+    if (isCurrent) {
       st = { ...stableStyle, ...transition }
     }
-    if (index === nextIndex) {
+    if (isNext) {
       st = { ...forwardStyle, ...transition }
     }
-    if (index === prevIndex) {
+    if (isPrev) {
       st = { ...backwardStyle, ...transition }
     }
 

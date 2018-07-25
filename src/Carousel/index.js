@@ -1,21 +1,26 @@
 import React, { PureComponent } from 'react';
-// import { string, shape } from 'prop-types';
+import { oneOfType, node, arrayOf } from 'prop-types';
 import throttle from 'lodash/throttle';
 
 import Slide from '../Slide';
 import './styles.css';
 import { ContextProvider } from './Context';
+import { directions } from '../constants';
 
 class Carousel extends PureComponent {
-  state = {
-    currentIndex: 0,
-    nextIndex: 1,
-    prevIndex: 2,
-    type: 'NONE'
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentIndex: 0,
+      nextIndex: 1,
+      prevIndex: 2,
+      direction: directions.NONE
+    };
+  }
 
   componentWillMount() {
-    this.setNextSlideDebounced = throttle(this.setNextSlide, 1000, {
+    this.setNextSlideThrottled = throttle(this.setNextSlide, 1000, {
       leading: true,
       trailing: false
     });
@@ -32,7 +37,7 @@ class Carousel extends PureComponent {
     })
   }
 
-  setNextSlide = (type) => {
+  setNextSlide = (direction) => {
     const { children = null } = this.props;
     if (!children || children.length <= 1) {
       return null;
@@ -42,18 +47,18 @@ class Carousel extends PureComponent {
     const { currentIndex } = this.state;
     let newIndex = 0;
 
-    if (type === 'NONE') {
+    if (direction === directions.NONE) {
       return null;
     }
 
-    if (type === 'FORWARD') {
+    if (direction === directions.FORWARD) {
       if (currentIndex < count - 1) {
         newIndex = currentIndex + 1;
       } else {
         newIndex = 0;
       }
     }
-    if (type === 'BACKWARD') {
+    if (direction === directions.BACKWARD) {
       if (currentIndex === 0) {
         newIndex = count - 1;
       } else {
@@ -74,21 +79,21 @@ class Carousel extends PureComponent {
   handleScroll = (e) => {
     e.preventDefault();
     const { deltaY } = e;
-    let type = 'NONE';
+    let direction = directions.NONE;
     if (deltaY < 0) {
-      type = 'FORWARD'
+      direction = directions.FORWARD
     }
     if (deltaY > 0) {
-      type = 'BACKWARD'
+      direction = directions.BACKWARD
     }
-    this.setNextSlideDebounced(type);
+    this.setNextSlideThrottled(direction);
   }
 
   render() {
     const { children } = this.props;
     const { currentIndex, nextIndex, prevIndex } = this.state;
 
-    console.log(`current: ${currentIndex}; next: ${nextIndex}; prev: ${prevIndex}`);
+    // console.log(`current: ${currentIndex}; next: ${nextIndex}; prev: ${prevIndex}`);
 
     const wrappedChildren = React.Children.map(children, (child, index) => (
       <Slide
@@ -114,7 +119,9 @@ class Carousel extends PureComponent {
   }
 }
 
-Carousel.propTypes = {};
+Carousel.propTypes = {
+  children: oneOfType([arrayOf(node), node]),
+};
 
 Carousel.defaultProps = {
   slides: []

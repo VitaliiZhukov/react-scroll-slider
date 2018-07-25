@@ -13,10 +13,13 @@ export const ContextProvider = ({ children, value }) => {
 export const withContext = ComposedComponent => {
   return (props) => (
     <SlideContext.Consumer>
-      {({ index }) =>
+      {({ index, isNext, isPrev, isCurrent }) =>
         <ComposedComponent
           {...props}
           index={index}
+          isNext={isNext}
+          isPrev={isPrev}
+          isCurrent={isCurrent}
         />
       }
     </SlideContext.Consumer>
