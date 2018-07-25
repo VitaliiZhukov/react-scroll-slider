@@ -1,16 +1,18 @@
 # react-scroll-slider
 
-Basic idea of this project is to build a Carousel component that will handle scrolling events and change content depending on that events. The extended feature is css transforms for inner slide elements and implementing smooth appearence/disappearence.
+React-scroll-slider is a component that triggers slides replacing by scroll event. Active slide indexes are provided by context provider and passed to active alaments that can be animated with css transitions. Each slide can have different number of active elements thus it's possible to add multiple animated elements with different animations.
+It's possible to add forward/backward animations depending on if slide is going to be rendered or going to be hidden.
 
 Demo is [here][demo]
 
 ### Roadmap
-  - Tests
-  - Storybook for showcases and code samples
-  - Implement hosizontal slide scrolling
+  - Add examples of usage with code samples
+  - Storybook for showcases
   - Support for swipe events
+  - Implement hosizontal slide scrolling
+  - Tests
 
-   [demo]: <https://gifted-williams-4fa740.netlify.com/>
+   [demo]: <https://stupefied-visvesvaraya-c4e00a.netlify.com/>
 
 ### Installation
 To install package
