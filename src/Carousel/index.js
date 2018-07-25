@@ -11,30 +11,20 @@ class Carousel extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      currentIndex: 0,
-      nextIndex: 1,
-      prevIndex: 2,
-      direction: directions.NONE
-    };
-  }
+    const { children } = props;
+    const count = children && children.length ? children.length : 0;
 
-  componentWillMount() {
+    this.state = {
+      direction: directions.NONE,
+      currentIndex: 0,
+      nextIndex: count ? 1 : 0,
+      prevIndex: count ? count - 1 : 0
+    };
+
     this.setNextSlideThrottled = throttle(this.setNextSlide, 1000, {
       leading: true,
       trailing: false
     });
-
-    this.setInitialIndexes();
-  }
-
-  setInitialIndexes() {
-    const { children } = this.props;
-    this.setState({
-      currentIndex: 0,
-      nextIndex: 1,
-      prevIndex: children.length - 1
-    })
   }
 
   setNextSlide = (direction) => {
